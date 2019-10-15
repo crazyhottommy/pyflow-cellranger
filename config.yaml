@@ -1,0 +1,70 @@
+
+#################################################################
+
+############ download from BaseSpace parameters #################
+
+#################################################################
+
+
+#### downloading token, this will be associated with your BaseSpace account
+## read https://help.basespace.illumina.com/articles/tutorials/using-the-python-run-downloader/ 
+## if you set download to False, you can leave it blank
+token: xxxxxxxxxxxxxxxxxxxx
+
+download: True
+
+## if download is false, e.g. copied the bcl files from the sequencing core over HPC
+## or downloaded the bcl files from Broad for Novaseq, specify the downloaded directories below
+## it is a two column tab delimited file: first column is the run_id, second column is the FULL
+## path of the directory
+## e.g.
+## run_id   path
+## 190213 /n/holylfs/LABS/informatics/mtang/projects/brandon/novaseq_scRNA/190213_SL-NVK_0122_BHJF3WDMXX
+## 190212 /n/holylfs/LABS/informatics/mtang/projects/brandon/novaseq_scRNA/190212_SL-NVK_0122_BHJF3JDMXX
+run_dirs: run_dir.txt
+
+
+#################################################################
+
+############ cellranger parameters ##################################
+
+#################################################################
+
+#### cellranger specific settings
+expect_cells: 3000
+#### reference  path
+transcriptome: /n/regal/informatics_public/reference_genome_by_tommy/cellranger_ref/mm10-2.1.0_premrna
+## additional cellranger count parameters, if you are using version 2, change --chemistry=SC3Pv2
+cellranger_count_args: "--nosecondary --chemistry=SC3Pv3"
+
+
+
+#################################################################
+
+############ Seurat parameters ##################################
+
+#################################################################
+
+# whether or not make a seurat object
+make_seurat: False
+
+## Seurat parameters. one can set pc.use = 20 to force only use first 20 PCs for calculation.
+## otherwise, it will use JackStraw to identify the significant PCs to use.
+make_seurat_obj_args: "x.low.cutoff = 0.05, x.high.cutoff = 10, y.cutoff = 0.5, num.pc = 100, do.par =TRUE, num.cores = 8, score.thresh = 1e-5, n.start = 100, nn.eps = 0, k.param = 30, resolution = 1"
+
+
+
+#################################################################
+
+############ HPC and sample information ########################
+
+#################################################################
+
+CLUSTER_JSON: './cluster.json'
+SAMPLES_JSON: './samples.json'
+
+#email for notification
+email: tangming2005@gmail.com
+
+
+

@@ -1,0 +1,37 @@
+{
+    "__default__" :
+    {
+        "time" : "00:40:00",
+        "N" : 1,
+        "n": 1,
+        "mem": 4000,
+        "p" : "shared",
+        "name" : "{rule}.{wildcards}",
+        "output": "sbatch_log/{rule}.{wildcards}.out",
+        "error": "sbatch_log/{rule}.{wildcards}.err"
+    },
+    "download_raw":
+    {
+        "time" : "12:00:00",
+        "n" : 1,
+        "mem": 4000
+    },
+    "make_fastq":
+    {
+        "time" : "12:00:00",
+        "n" : 8,
+        "mem": 32768
+    },
+    "count":
+    {
+        "time" : "24:00:00",
+        "mem": 49152,
+        "n" : 12
+    },
+    "make_seurat_obj":
+    {
+        "time" : "12:00:00",
+        "n" : 8,
+        "mem": 32768
+    }
+}
